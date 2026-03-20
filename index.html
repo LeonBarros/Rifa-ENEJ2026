@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minha Rifa Digital</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+      background-color: #001f6c;
+      color: white;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1, h2, p {
+      margin: 8px 0;
+    }
+
+    .titulo {
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .subinfo {
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .legenda {
+      margin-top: 20px;
+      font-size: 18px;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .number {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+      background-color: #ffffff10;
+      cursor: pointer;
+      transition: 0.2s;
+      aspect-ratio: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .number:hover {
+      transform: scale(1.05);
+    }
+
+    .sold {
+      background-color: #f44336;
+      color: white;
+      cursor: not-allowed;
+    }
+
+    .botao {
+      display: block;
+      width: fit-content;
+      margin: 25px auto 0;
+      background: #069cc2;
+      color: white;
+      text-decoration: none;
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-size: 18px;
+      border: none;
+    }
+
+    .aviso {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 500px) {
+      .titulo {
+        font-size: 18px;
+      }
+
+      .subinfo {
+        font-size: 13px;
+      }
+
+      .legenda {
+        font-size: 15px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+        gap: 6px;
+      }
+
+      .number {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- TÍTULO PRINCIPAL -->
+    <h1 class="titulo">
+      <u>RIFA PARA [COLOQUE O MOTIVO DA RIFA]</u><br>
+      R$ [VALOR] cada número para concorrer a <br>
+      <strong>[PRÊMIO]</strong>
+    </h1>
+
+    <!-- INFORMAÇÕES -->
+    <h2 class="subinfo">🤞 Sorteio: [DATA DO SORTEIO]</h2>
+    <h2 class="subinfo">📱 Contato: [NÚMERO E NOME]</h2>
+    <h2 class="subinfo">💱 Chave PIX: [SUA CHAVE PIX]</h2>
+
+    <!-- LEGENDA -->
+    <div class="legenda">
+      Clique no número desejado.<br>
+      Azul: Disponível<br>
+      Vermelho: Indisponível<br>
+      👇👇👇
+    </div>
+
+    <!-- GRADE -->
+    <div class="grid" id="rifaGrid"></div>
+
+    <!-- AVISOS -->
+    <div class="aviso">
+      👉 Caso algum número não apareça corretamente, tente girar a tela do celular.<br><br>
+      👉 Fale no WhatsApp para confirmar a disponibilidade.
+    </div>
+
+    <!-- BOTÃO OPCIONAL -->
+    <a href="[LINK DO GRUPO OU WHATSAPP]" class="botao" target="_blank">
+      Entrar em contato
+    </a>
+  </div>
+
+  <script>
+    /* =========================
+       CONFIGURAÇÕES DA SUA RIFA
+       ========================= */
+
+    const inicioNumero = 1;   // número inicial
+    const fimNumero = 100;    // número final
+
+    const telefoneWhatsApp = '5500000000000'; 
+    // Exemplo: 5582999999999
+
+    const mensagemPadrao = 'Olá, eu gostaria de comprar a rifa número:';
+
+    // NÚMEROS VENDIDOS
+    const vendidos = {
+      3: 'Maria',
+      7: 'João',
+      12: 'Carlos',
+      25: 'Ana'
+    };
+
+    /* =========================
+       GERAÇÃO AUTOMÁTICA
+       ========================= */
+
+    const grid = document.getElementById('rifaGrid');
+
+    for (let i = inicioNumero; i <= fimNumero; i++) {
+      const div = document.createElement('div');
+      div.classList.add('number');
+      div.textContent = i;
+
+      if (vendidos[i]) {
+        div.classList.add('sold');
+        div.title = "Comprado por: " + vendidos[i];
+      } else {
+        div.addEventListener('click', () => {
+          const mensagem = encodeURIComponent(`${mensagemPadrao} ${i}`);
+          const url = `https://wa.me/${telefoneWhatsApp}?text=${mensagem}`;
+          window.open(url, '_blank');
+        });
+      }
+
+      grid.appendChild(div);
+    }
+  </script>
+</body>
+</html>
