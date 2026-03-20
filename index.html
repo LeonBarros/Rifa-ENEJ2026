@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minha Rifa Digital</title>
+  <title>Rifa ENEJ 2026</title>
 
   <style>
     body {
@@ -16,8 +16,9 @@
     }
 
     .container {
-      max-width: 900px;
+      max-width: 600px;
       margin: 0 auto;
+      text-align: center;
     }
 
     h1, h2, p {
@@ -25,34 +26,39 @@
     }
 
     .titulo {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
-      text-align: center;
-      line-height: 1.4;
+      line-height: 1.5;
+    }
+
+    .titulo strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 28px;
+      color: #ffd700;
     }
 
     .subinfo {
       font-size: 15px;
-      text-align: center;
+      margin: 6px 0;
     }
 
     .legenda {
-      margin-top: 20px;
-      font-size: 18px;
-      text-align: center;
-      line-height: 1.6;
+      margin-top: 25px;
+      font-size: 17px;
+      line-height: 1.8;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
       gap: 8px;
-      margin-top: 20px;
+      margin-top: 25px;
     }
 
     .number {
       border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 8px;
       text-align: center;
       background-color: #ffffff10;
@@ -66,7 +72,8 @@
     }
 
     .number:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
+      background-color: #ffffff20;
     }
 
     .sold {
@@ -78,7 +85,7 @@
     .botao {
       display: block;
       width: fit-content;
-      margin: 25px auto 0;
+      margin: 30px auto 0;
       background: #069cc2;
       color: white;
       text-decoration: none;
@@ -86,18 +93,28 @@
       border-radius: 8px;
       font-size: 18px;
       border: none;
+      transition: 0.2s;
+    }
+
+    .botao:hover {
+      background: #0485a8;
+      transform: scale(1.05);
     }
 
     .aviso {
-      margin-top: 20px;
+      margin-top: 25px;
       font-size: 14px;
-      text-align: center;
       line-height: 1.5;
+      opacity: 0.9;
     }
 
     @media (max-width: 500px) {
       .titulo {
-        font-size: 18px;
+        font-size: 20px;
+      }
+
+      .titulo strong {
+        font-size: 24px;
       }
 
       .subinfo {
@@ -119,17 +136,19 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
-    
-    <!-- TÍTULO PRINCIPAL -->
+
+    <!-- TÍTULO -->
     <h1 class="titulo">
-      <u>RIFA PARA CUSTOS ENEJ 2026</u><br>
-      R$ 10,00 cada número para concorrer a <br>
-      <strong>PRÊMIO R$ 1000,00</strong>
+      <u>RIFA PARA CUSTOS ENEJ 2026</u><br><br>
+      R$ 10,00 cada número<br>
+      <span style="font-size:18px;">para concorrer a</span>
+      <strong>PRÊMIO R$ 1000,00 💰</strong>
     </h1>
 
-    <!-- INFORMAÇÕES -->
+    <!-- INFO -->
     <h2 class="subinfo">🤞 Sorteio: 31/07/2026</h2>
     <h2 class="subinfo">📱 Contato: Leonardo - (75) 99165-8308</h2>
     <h2 class="subinfo">💱 Chave PIX: 75991658308</h2>
@@ -142,45 +161,33 @@
       👇👇👇
     </div>
 
-    <!-- GRADE -->
+    <!-- GRID -->
     <div class="grid" id="rifaGrid"></div>
 
-    <!-- AVISOS -->
+    <!-- AVISO -->
     <div class="aviso">
       👉 Caso algum número não apareça corretamente, tente girar a tela do celular.<br><br>
       👉 Fale no WhatsApp para confirmar a disponibilidade.
     </div>
 
-    <!-- BOTÃO OPCIONAL -->
-    <a href="[LINK DO GRUPO OU WHATSAPP]" class="botao" target="_blank">
-      Entrar em contato
+    <!-- BOTÃO -->
+    <a href="https://wa.me/5575991658308" class="botao" target="_blank">
+      Falar no WhatsApp
     </a>
+
   </div>
 
   <script>
-    /* =========================
-       CONFIGURAÇÕES DA SUA RIFA
-       ========================= */
+    const inicioNumero = 750;
+    const fimNumero = 1000;
 
-    const inicioNumero = 750;   // número inicial
-    const fimNumero = 1000;    // número final
-
-    const telefoneWhatsApp = '5575991658308'; 
-    // Exemplo: 5582999999999
-
+    const telefoneWhatsApp = '5575991658308';
     const mensagemPadrao = 'Olá, eu gostaria de comprar a rifa número:';
 
-    // NÚMEROS VENDIDOS
     const vendidos = {
-      3: 'Maria',
-      7: 'João',
-      12: 'Carlos',
-      25: 'Ana'
+      755: 'João',
+      760: 'Maria'
     };
-
-    /* =========================
-       GERAÇÃO AUTOMÁTICA
-       ========================= */
 
     const grid = document.getElementById('rifaGrid');
 
